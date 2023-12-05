@@ -1,0 +1,99 @@
+А) Программа, которая удаляет из списка все элементы, стоящие на четных позициях:
+
+def remove_even_positions(lst):
+    new_lst = [lst[i] for i in range(len(lst)) if i % 2 != 0]
+    return new_lst
+
+# Пример использования
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+new_list = remove_even_positions(my_list)
+print(new_list)
+
+B)  Программа, которая считывает список слов и находит слова, содержащие более трех гласных букв:
+
+def count_vowels(word):
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    count = 0
+    for letter in word:
+        if letter in vowels:
+            count += 1
+    return count
+
+def find_words_with_more_than_three_vowels(words):
+    result = []
+    for word in words:
+        if count_vowels(word) > 3:
+            result.append(word)
+    return result
+word_list = input("").split()
+words_with_more_than_three_vowels = find_words_with_more_than_three_vowels(word_list)
+print("Слова, содержащие более трех гласных букв:")
+for word in words_with_more_than_three_vowels:
+    print(word)
+
+C) Программа, которая находит второй по величине элемент в списке:
+
+def find_second_largest(numbers):
+    largest = float('-inf')
+    second_largest = float('-inf')
+    
+    for num in numbers:
+        if num > largest:
+            second_largest = largest
+            largest = num
+        elif num > second_largest and num != largest:
+            second_largest = num
+            
+    return second_largest
+
+number_list = [10, 5, 8, 20, 15]
+second_largest_num = find_second_largest(number_list)
+print("Второй по величине элемент в списке:", second_largest_num)
+
+D) Программа, которая удаляет из списка все дубликаты:
+
+def remove_duplicates(lst):
+    return list(set(lst))
+
+my_list = [1, 2, 3, 3, 4, 4, 5, 6, 6, 6]
+list_without_duplicates = remove_duplicates(my_list)
+print("Список без дубликатов:", list_without_duplicates)
+
+E) Программа, которая считывает данные из CSV-файла и создает словарь, где ключами являются значения в столбце «Name», а значениями — соответствующие им словари с информацией о поле, возрасте и зарплате:
+
+import csv
+
+def create_dict_from_csv(filename):
+    result_dict = {}
+    with open(filename, 'r') as file:
+        csv_reader = csv.DictReader(file)
+        for row in csv_reader:
+            name = row['Name']
+            gender = row['Gender']
+            age = int(row['Age'])
+            salary = float(row['Salary'])
+            info_dict = {'Gender': gender, 'Age': age, 'Salary': salary}
+            result_dict[name] = info_dict
+    return result_dict
+
+csv_file = 'data.csv'
+dictionary = create_dict_from_csv(csv_file)
+for name, info in dictionary.items():
+    print("Имя:", name)
+    print("Пол:", info['Gender'])
+    print("Возраст:", info['Age'])
+    print("Зарплата:", info['Salary'])
+    print("--------------------")
+
+F) Программа,которая запрашивает у пользователя строку и выводит на экран все ее подстроки длиной не менее трех символов:
+
+def print_substrings(string):
+    length = len(string)
+    for i in range(length):
+        for j in range(i + 3, length + 1):
+            substring = string[i:j]
+            print(substring)
+
+user_string = input("Введите строку: ")
+print("Подстроки длиной не менее трех символов:")
+print_substrings(user_string)
